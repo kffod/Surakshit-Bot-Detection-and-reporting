@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles for hacker theme */
+:root {
+  color-scheme: dark;
+  --neon-green: #00ff41;
+  --neon-blue: #0984e3;
+  --dark-bg: #0d1117;
+  --darker-bg: #010409;
+  --terminal-bg: rgba(1, 22, 39, 0.95);
+  --terminal-border: rgba(0, 255, 65, 0.25);
+}
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-gray-100;
+    background-color: var(--dark-bg);
+    font-family: 'Fira Code', monospace, system-ui;
+  }
+
+  input,
+  textarea,
+  select {
+    @apply bg-gray-800 border-gray-700 text-gray-100;
+    caret-color: var(--neon-green);
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply border-green-500 ring-green-500;
+    box-shadow: 0 0 5px var(--neon-green);
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-gray-800 border border-gray-700 shadow-lg rounded-lg;
+    background-color: var(--terminal-bg);
+    border: 1px solid var(--terminal-border);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.1);
+  }
+
+  .neon-text {
+    @apply font-bold;
+    color: var(--neon-green);
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.7);
+  }
+
+  .terminal-text {
+    @apply font-mono text-green-400;
+  }
+
+  .hacker-btn {
+    @apply bg-gray-800 text-green-400 border border-green-500 hover:bg-green-900 hover:border-green-400 transition-all duration-200 font-mono;
+  }
+
+  .scan-line {
+    background: linear-gradient(to bottom,
+        rgba(0, 255, 65, 0) 0%,
+        rgba(0, 255, 65, 0.05) 50%,
+        rgba(0, 255, 65, 0) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    animation: scanline 7s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(100%);
+    }
+  }
+
+  .glitch {
+    position: relative;
+    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+      -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+      0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    animation: glitch 1s infinite;
+  }
+
+  @keyframes glitch {
+    0% {
+      text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
+        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
+        0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+
+    15% {
+      text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+
+    50% {
+      text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+        0.05em 0 0 rgba(0, 255, 0, 0.75),
+        0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+
+    100% {
+      text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
+        -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
+        -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+    }
+  }
+}
